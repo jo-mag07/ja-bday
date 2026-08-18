@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- makes the website behave properly on phones -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="A little birthday surprise made especially for Ja."
+    >
+
+    <title>For Ja 🖤</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- background deco -->
+
+    <div class="floating-elements" aria-hidden="true">
+        <span class="float-item paw paw-1">🐾</span>
+        <span class="float-item paw paw-2">🐾</span>
+        <span class="float-item yarn yarn-1">🧶</span>
+        <span class="float-item bone bone-1">🦴</span>
+        <span class="float-item balloon balloon-1">🎈</span>
+    </div>
+
+
+    <!-- main app, js will switch between these -->
+
+    <main id="app">
+
+
+        <!-- loading screen -->
+
+        <section
+            id="loading-screen"
+            class="scene active"
+            aria-label="Loading"
+        >
+
+            <div class="loading-content">
+
+                <div class="loading-paw">🐾</div>
+
+                <p class="loading-small">preparing...</p>
+
+                <div class="loading-checks">
+
+                    <p>
+                        waiting for someone...
+                        <span>✓</span>
+                    </p>
+
+                    <p>
+                        preparing birthday...
+                        <span>✓</span>
+                    </p>
+
+                    <p>
+                        keeping bad guys away...
+                        <span>✓</span>
+                    </p>
+
+                </div>
+
+                <p class="loading-status">
+                    almost there...
+                </p>
+
+                <button
+                    id="start-button"
+                    class="primary-button"
+                    type="button"
+                    disabled
+                >
+                    Ready? 
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- identity check -->
+
+        <section
+            id="identity-screen"
+            class="scene"
+            aria-label="Identity verification"
+        >
+
+            <div class="character-container">
+
+                <div
+                    id="dog-character"
+                    class="character character-dog"
+                >
+                    <img
+                        src="assets/images/dog/dog.png"
+                        alt="A cute dog"
+                    >
+                </div>
+
+                <div class="dialogue-box">
+
+                    <p
+                        id="identity-speaker"
+                        class="speaker-name"
+                    >
+                        🐶 Axel
+                    </p>
+
+                    <p
+                        id="identity-dialogue"
+                        class="dialogue-text"
+                    >
+                    Please stop for a moment.
+                    <br>
+                    May I ask who are you?
+                    </p>
+
+                    <button
+                        id="identity-skip"
+                        class="dialogue-skip"
+                        type="button"
+                    >
+    Skip →
+</button>
+
+
+                </div>
+
+            </div>
+
+
+            <form
+                id="identity-form"
+                class="input-area"
+            >
+
+                <label for="name-input">
+                    Your name
+                </label>
+
+                <input
+                    id="name-input"
+                    name="name"
+                    type="text"
+                    placeholder="Type your name..."
+                    autocomplete="off"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Enter
+                </button>
+
+            </form>
+
+
+            <!-- Cat will appear through JavaScript -->
+
+            <div
+                id="cat-character"
+                class="character character-cat hidden"
+            >
+                <img
+                    src="assets/images/cat/cat.png"
+                    alt="A grumpy cat"
+                >
+            </div>
+
+            <!-- name ver long -->
+
+            <div
+                id="name-verification"
+                class="verification-overlay hidden"
+            >
+
+                <div class="verification-content">
+
+                    <div class="verification-icon">
+                        🐾
+                    </div>
+
+                    <p class="tiny-label">
+                        SECURITY CHECK
+                    </p>
+
+                    <h2>
+                        Verifying your name...
+                    </h2>
+
+                    <p
+                        id="verification-status"
+                        class="verification-status"
+                    >
+                        Checking identity...
+                    </p>
+
+                    <div class="progress-container">
+
+                        <div
+                            id="verification-progress"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                    <p
+                        id="verification-percent"
+                        class="verification-percent"
+                    >
+                        0%
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- bday ver -->
+
+        <section
+            id="birthday-screen"
+            class="scene"
+            aria-label="Birthday verification"
+        >
+
+            <div class="character-container">
+
+                <div
+                    id="birthday-character"
+                    class="character"
+                >
+                    <img
+                        src="assets/images/cat/cat.png"
+                        alt="Birthday character"
+                    >
+                </div>
+
+                <div class="dialogue-box">
+
+                    <p
+                        id="birthday-speaker"
+                        class="speaker-name"
+                    >
+                        🐱 Peanut
+                    </p>
+
+                    <p
+                        id="birthday-dialogue"
+                        class="dialogue-text"
+                    >
+                        One more thing.
+                        <br>
+                        When were you born?
+                    </p>
+
+                    <button
+                        id="birthday-skip"
+                        class="dialogue-skip"
+                        type="button"
+                    >
+    Skip →
+</button>
+
+
+                </div>
+
+            </div>
+
+
+            <form
+                id="birthday-form"
+                class="input-area"
+            >
+
+                <label for="birthday-input">
+                    Your birthday
+                </label>
+
+                <input
+                    id="birthday-input"
+                    name="birthday"
+                    type="date"
+                    required
+                >
+
+                <p
+                    id="birthday-error"
+                    class="error-message"
+                    aria-live="polite"
+                ></p>
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Check
+                </button>
+
+            </form>
+
+            <!-- bday ver loading -->
+
+            <div
+                id="birthday-verification"
+                class="verification-overlay hidden"
+            >
+
+                <div class="verification-content">
+
+                    <div class="verification-icon">
+                        🎂
+                    </div>
+
+                    <p class="tiny-label">
+                        FINAL CHECK
+                    </p>
+
+                    <h2>
+                        Checking your birthday...
+                    </h2>
+
+                    <p
+                        id="birthday-verification-status"
+                        class="verification-status"
+                    >
+                        Looking through the records...
+                    </p>
+
+                    <div class="progress-container">
+
+                        <div
+                            id="birthday-verification-progress"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                    <p
+                        id="birthday-verification-percent"
+                        class="verification-percent"
+                    >
+                        0%
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- bday intro -->
+
+        <section
+            id="birthday-intro"
+            class="scene"
+            aria-label="Birthday surprise introduction"
+        >
+
+            <div class="intro-content">
+
+                <span class="tiny-label">
+                    ACCESS GRANTED
+                </span>
+
+                <h1>
+                    Okay, birthday girl.
+                </h1>
+
+                <p class="intro-text">
+                    I guess you're officially allowed in.
+                </p>
+
+                <p class="intro-text">
+                    Our owner made something for you.
+                </p>
+
+                <button
+                    id="begin-message-button"
+                    class="primary-button"
+                    type="button"
+                >
+                    Open your surprise
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- bday msg -->
+
+        <section
+            id="message-screen"
+            class="scene"
+            aria-label="Birthday message"
+        >
+
+            <article class="message-container">
+
+                <span class="message-label">
+                    A little something for you
+                </span>
+
+                <h1>
+                    Hey, Ja. 🖤
+                </h1>
+
+                <div id="birthday-message">
+
+                    <p class="message-paragraph">
+                        Happy birthday!!!
+                    </p>
+
+                    <p class="message-paragraph">
+                        I know this probably isn't the most
+                        extravagant birthday surprise in the world...
+                        but I wanted to make something that was
+                        actually for you.
+                    </p>
+
+                    <p class="message-paragraph">
+                        And honestly, I still think it's kind of
+                        funny how we even got here no?
+                    </p>
+
+                    <p class="message-paragraph">
+                        I still remember that time at the library...
+                    </p>
+
+                    <p class="message-paragraph">
+                        My classmates and I just decided to sit-in
+                        since there's no table available aside from where you're seated. Though, I believe I told this story already sa 4152 words confession ko, no?
+                    </p>
+
+                    <p class="message-paragraph">
+                        Now... somehow, you ended up reaching out to me "ACCIDENTALLY",
+                        and somehow our conversations actually worked.
+                    </p>
+
+                    <p class="message-paragraph">
+                        And now here we are.
+                    </p>
+
+                    <p class="message-paragraph">
+                        I actually wanted to celebrate your birthday
+                        properly this time.
+                    </p>
+
+                    <p class="message-paragraph">
+                        I had plans, and I wanted to get you something
+                        and celebrate with you and our friends...
+                    </p>
+
+                    <p class="message-paragraph">
+                        Unfortunately, life decided that my wallet
+                        needed character development first... hays.
+                    </p>
+
+                    <p class="message-paragraph">
+                        So, yeah.
+                    </p>
+
+                    <p class="message-paragraph">
+                        I couldn't do everything I wanted to do.
+                        But I still wanted you to have something.
+                    </p>
+
+                    <p class="message-paragraph">
+                        Because you're someone special to me, Ja.
+                    </p>
+
+                    <p class="message-paragraph">
+                        And I hope you know that you can always count
+                        on me to be someone you can trust, someone
+                        you can rely on, and someone who genuinely
+                        cares about you.
+                    </p>
+
+                    <p class="message-paragraph">
+                        Keep on slaying, okay?
+                    </p>
+
+                    <p class="message-paragraph">
+                        You deserve a really good year ahead of you.
+                    </p>
+
+                    <p class="message-paragraph">
+                        Happy twentieth birthday, maldita!
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="continue-to-memories"
+                    class="primary-button"
+                    type="button"
+                >
+                    I have something else...
+                </button>
+
+            </article>
+
+        </section>
+
+
+        <!-- flashcards -->
+
+        <section
+            id="memories-screen"
+            class="scene"
+            aria-label="Photo memories"
+        >
+
+            <div class="memories-container">
+
+                <span class="tiny-label">
+                    DEFINITELY NOT A PHOTO ARCHIVE
+                </span>
+
+                <h1>
+                    A few memories.
+                </h1>
+
+                <p class="memories-intro">
+                    I may or may not have saved some pictures... I swear
+                </p>
+
+
+                <!-- card -->
+
+                <div
+                    id="memory-card"
+                    class="memory-card"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Tap to flip the photo"
+                >
+
+                    <div class="memory-card-inner">
+
+                        <!-- forefront -->
+
+                        <div class="memory-card-front">
+
+                            <img
+                                id="memory-image"
+                                src="assets/images/photos/ja1.jpeg"
+                                alt="A memory"
+                            >
+
+                            <span class="flip-hint">
+                                tap to flip ↻
+                            </span>
+
+                        </div>
+
+
+                        <!-- back -->
+
+                        <div class="memory-card-back">
+
+                            <p id="memory-caption">
+                                Sorry, saved this pic.
+                                Just found it cute...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- counter -->
+
+                <p
+                    id="memory-counter"
+                    class="memory-counter"
+                >
+                    01 / 10
+                </p>
+
+
+                <!-- controls -->
+
+                <div class="memory-controls">
+
+                    <button
+                        id="previous-memory"
+                        class="secondary-button"
+                        type="button"
+                    >
+                        ←
+                    </button>
+
+                    <button
+                        id="next-memory"
+                        class="secondary-button"
+                        type="button"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ending -->
+
+        <section
+            id="ending-screen"
+            class="scene"
+            aria-label="Final birthday message"
+        >
+
+            <div class="ending-content">
+
+                <span class="tiny-label">
+                    ONE LAST THING
+                </span>
+
+                <h1>
+                    Happy birthday once again, Ja. 🖤
+                </h1>
+
+                <p class="ending-text">
+                    I hope you had a good one.
+                </p>
+
+                <p class="ending-text">
+                    Keep on slaying.
+                </p>
+
+                <p class="ending-text">
+                    And, uh...
+                </p>
+
+                <p class="ending-text ending-special">
+                    I'll make bawi next time.
+                </p>
+
+                <p class="ending-signature">
+                    — Jo
+                </p>
+
+                <button
+                    id="restart-button"
+                    class="secondary-button"
+                    type="button"
+                >
+                    ↻ Start again
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
